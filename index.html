@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Metronome</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel='stylesheet' href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+   <!--- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>
+    <script src="js/metronome.js"></script>
+   
+</head>
+
+<body>
+    
+     
+<div class="container" style="padding-top :50px">
+    <div class="row">
+        <div class="col-xl ">
+            <div class ="fonts1" style="font-family: Poppins;font-style: normal;font-weight: normal;line-height: 108px;color: white;display: flex;
+            justify-content: center;
+            align-items: center;">Metronome</div>
+            <div style ="display: flex;
+            justify-content: center;
+            align-items: center;">
+                <button  class="btn btn-secondary btn-rounded"  style="background: #615C5C;" onclick="sub1()" data-toggle="tooltip" data-placement="top" title="Decrease BPM by 1"> - </button>
+                <label id = "bpm" style ="padding-left: 20px;padding-right: 40px;color:white" > 100 BPM </label>
+                <button class=" btn btn-secondary btn-rounded"  style="background: #615C5C;" onclick="plus1()" data-toggle="tooltip" data-placement="top" title="Increase BPM by 1"  > + </button>
+            </div>   
+            <div class="form-group" style="padding-top: 20px;display: flex;
+            justify-content: center;
+            align-items: center;">
+                <select id="style" class="form-control" onclick='stylechange()'>
+                    <option value='0'> Kartaal (4)</option>
+                    <option value='1'> Kartaal (3)</option>
+                    <option value='2'> Mridanga (16)</option>
+                    <option value='3'> Mridanga (8)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bpmvel" style="
+                display: flex;
+                align-items: center;
+                text-align: center;
+                font-weight: normal;
+                color: white;">BPM Velocity</label>
+                <input id="bpm_velo" ata-toggle="tooltip" data-placement="top" title="Enter BPM Velocity" class='form-control' type="number" value='0'
+                min='0' max='50' onchange="bpmvel()" >
+            </div>
+           <div class="container">
+               <div class="row">
+                <div class='col-sm-4'style="padding-top:20px;">
+                    <input id="start" class="form-control btn btn-secondary"
+                   type="button"  value="Start" onclick ="toggle()" style ="color: #AC9B9B;background: rgba(2, 15, 40, 0.64);
+                   border-radius: 15px;font-weight: 500;
+font-size: 24px;"/>
+                </div>
+                <div class='col-sm-8'style="padding-top:20px;">
+                    <input id="addtofav" class="form-control btn btn-secondary"
+                   type="button" value="Add to Favourites" data-toggle="tooltip" data-placement="top" title="Save the current setting to your favourites" onclick='addtofav()'style ="color: #AC9B9B;background: rgba(2, 15, 40, 0.64);
+                   border-radius: 15px;font-weight: 500;
+font-size: 24px;"/>
+                </div>
+               </div>
+           </div>
+            
+                
+            <div class='container' >
+                <div class='row'>
+                    <div class='col-sm-8'style="padding-top:20px;">
+                        <input id="tap" class="form-control btn btn-secondary"
+                   type="button" value="No Transition "data-toggle="tooltip" data-placement="top" title="Tap for transition" onclick="tap()" style ="color: #AC9B9B;background: rgba(2, 15, 40, 0.64);
+                   border-radius: 15px;font-weight: 500;
+font-size: 20px;"/>
+                   </div>
+                   <div class="col-sm-4"style="padding-top:20px;">
+                        <input id="reset" class="form-control btn btn-secondary"
+                    type="button" value="Reset" data-toggle="tooltip" data-placement="top" title="Reset Transition" onclick="reset()"style ="color: #AC9B9B;background: rgba(2, 15, 40, 0.64);
+                    border-radius: 15px;font-weight: 500;
+ font-size: 24px;"/>
+                   </div>
+                </div>
+                
+            </div>
+            
+            
+        </div>
+        <div class="col-xl pad">
+            <div class="container">
+                <div class ="fonts2" style="font-family: Poppins;font-style: normal;font-weight: normal;line-height: 108px;color: white;display: flex; justify-content: center;align-items: center;">
+                    Play your favourites 
+                </div>
+                <div class="float-right" style="padding-bottom:15px;">
+                    <button onclick="Clipboard_CopyTo()" style ="color: #AC9B9B;background: rgba(2, 15, 40, 0.64);
+                    border-radius: 15px;font-weight: 500;
+      font-size: 24px;">Copy to Clipboard</button>
+                </div>
+             
+                <div >
+                    <input data-toggle="tooltip" data-placement="top" title="Enter the encoded string to add previous favourites."  id="showfav" class='form-control' onchange="showfav()">
+                </div>
+                <div class="row" id="fav">
+                
+                
+                </div>
+            </div>
+           
+            
+        </div>
+        
+    </div>
+
+    <div id='visualization' class="col-sm mx-auto" style="padding-top: 40px;display: flex;
+    justify-content: center;
+    align-items: center;">
+    </div>
+    <div id='visual_style' class="col-sm mx-auto" style="padding-top: 40px;display: flex;
+    justify-content: center;
+    align-items: center;">
+    </div>
+    <div id='visual_bpm' class="col-sm mx-auto" style="padding-top: 40px;display: flex;
+    justify-content: center;
+    align-items: center;">
+    </div>
+    <div id="savefav" class="col-sm mx-auto" style="padding-top: 40px;display: flex;
+    justify-content: center;
+    align-items: center;">
+    </div>
+</div>
+
+<footer class="site-footer">
+      
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6col-sm-6 col-xs-12">
+        <p class="copyright-text"> Developed by <a href="https://in.linkedin.com/in/gyanendra-kumar-iitk">Gyanendra Kumar</a>, <a href="https://www.linkedin.com/in/nitin-gupta-23805a201/?originalSubdomain=in">Nitin Gupta</a> and <a href="https://www.linkedin.com/in/abhishek-verma-300a3a1b4/">Abhishek Verma</a>.
+          </p>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+         <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
+       <a href="#">Madhav Lab @ IITK</a>.
+        </div>
+      </div>
+    </div>
+</footer>
+
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+-->
+
+</body>
+</html>
+

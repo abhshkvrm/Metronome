@@ -1,0 +1,154 @@
+
+
+body{
+    background: url(assets/images/bg.png);
+    background-attachment: fixed;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    height: 100%; 
+    color: white;
+    font-weight: 500;
+}
+@media screen and (min-width: 1200px) {
+    div.fonts1 {
+      font-size: 72px;
+    }
+    div.fonts2 {
+        font-size: 40px;
+    }
+    div.pad{
+        padding-top: 70px;
+    }
+    body{
+        font-size: 26px;
+    }
+    .site-footer
+    {
+        background-color:#26272b;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        padding-top:20px;
+        padding-bottom:20px;
+        width: 100%;
+        font-size:20px;
+        line-height:24px;
+        color:#737373;
+        
+    }
+  }
+  
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 1199px) {
+    div.fonts1 {
+      font-size: 40px;
+    }
+    div.fonts2 {
+        font-size: 30px;
+    }
+    body{
+        font-size: 20px;
+    }
+    .site-footer
+    {
+        background-color:#26272b;
+        padding:10px 0 20px;
+        width:100%;
+        font-size:15px;
+        line-height:24px;
+        color:#737373;
+        
+    }
+}
+
+
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+
